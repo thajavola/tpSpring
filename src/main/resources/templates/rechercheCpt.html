@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="row">
+        <table class="table details-table table-dark" border="1">
+           <thead class="table-header">
+              <tr>
+                 <th th:text="ID"></th>
+                 <th th:text="Nom"></th>
+                 <th th:text="Prenom"></th>
+                 <th th:text="Mail"></th>
+                 <th th:text="Adresse"></th>
+               
+              </tr>
+           </thead>
+           <tbody class="summary-table">
+              <tr th:object="${compte}" bgcolor="#f0f8ff" class="col-md-4 my-1 odd-row-color">
+                <td th:text="${compte.idcompte}"></td>
+                 <td th:text="${compte.nom}"></td>
+                 <td th:text="${compte.prenom}"></td>
+                 <td th:text="${compte.mail}"></td>
+                 <td th:text="${compte.adresse}"></td>
+               
+              </tr>
+           </tbody>
+        </table>
+</div>
+</body>
+</html>

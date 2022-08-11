@@ -21,7 +21,17 @@ public class CompteService {
 
     public List<Compte> getNom(String nom){
         return compteRepository.findByNom(nom);
+        
+    }
 
+    public List<Compte> getId(Integer idcompte){
+        return compteRepository.findByIdcompte(idcompte);
+        
+    }
+    
+    public Compte getIdCompte(Integer idcompte){
+        return compteRepository.findById(idcompte).orElseThrow();
+        
     }
 
     public void insert(Compte s){
@@ -29,7 +39,9 @@ public class CompteService {
     }
 
     public void del(Integer idcompte){
-        compteRepository.deleteById(idcompte);
+    Compte compte =  compteRepository.findById(idcompte).orElseThrow();
+     
+      compteRepository.delete(compte);
     }
 
    

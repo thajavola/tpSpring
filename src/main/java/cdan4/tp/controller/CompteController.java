@@ -1,5 +1,7 @@
+package cdan4.tp.controller;
+import cdan4.tp.repository.CompteRepository;
 
-
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +11,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cdan4.tp.entity.Compte;
 import cdan4.tp.service.CompteService;
 
 @Controller
-@RequestMapping("/compte")
+
 
 public class CompteController {
     @Autowired
@@ -29,17 +32,14 @@ public class CompteController {
 
         return compteService.getAll();
     }
-    @GetMapping("/listeCompte/{param1}")
-    public List<Compte> listeCompteNom(@PathVariable("param1") String nom){
-        return compteService.getNom(nom);
-    }
 
    
 
-    @DeleteMapping("/delCompte/{param1}")
-    public void delNom(@PathVariable("param1") Integer idcompte){
-        compteService.del(idcompte);
-    }
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable("id") Integer idcompte, Model model) {
+    compteService.del(idcompte);
+    return "redirect:/afficheCompte";
+}
 
     @PostMapping("/saveCompte/{idcompte},{nom},{prenom},{adresse},{contact},{genre},{mail},{mot_de_passe}")
     public void saveCompte(@PathVariable("idcompte") Integer idcompte,@PathVariable("nom") String nom,@PathVariable("prenom") String prenom,@PathVariable("adresse") String adresse,@PathVariable("contact") String contact,@PathVariable("genre") String genre,@PathVariable("mail") String mail,@PathVariable("mot_de_passe") String mot_de_passe){
@@ -65,6 +65,19 @@ public class CompteController {
         return "afficheCpt";
 
     }
+    
+    @GetMapping(path = "/affiche/{id}")
+    public String  afficheCompte(@PathVariable("id") Integer idcompte, Model model){
+       
+        Compte compte = compteService.getIdCompte(idcompte);
+       
+        model.addAttribute("compte", compte);
+
+     
+        return "rechercheCpt";
+
+    }
+
 
 
 }

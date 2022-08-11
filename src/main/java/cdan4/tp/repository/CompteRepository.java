@@ -17,5 +17,5 @@ public interface CompteRepository extends JpaRepository<Compte,Integer>{
     //  * @return
     //  */
      List<Compte> findByNom(@Param("nom") String nom);
-    
+     List<Compte> findByIdcompte(@Param("idcompte") Integer idcompte);
 }
