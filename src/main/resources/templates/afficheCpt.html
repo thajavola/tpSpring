@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="row">
+        <table class="table details-table table-dark" border="1">
+           <thead class="table-header">
+              <tr>
+                 <th th:text="Nom"></th>
+                 <th th:text="Prenom"></th>
+                 <th th:text="Mail"></th>
+                 <th th:text="Adresse"></th>
+                 <!-- <th th:text="Action"></th> -->
+              </tr>
+           </thead>
+           <tbody class="summary-table">
+              <tr th:each="compte : ${comptes}" bgcolor="#f0f8ff" class="col-md-4 my-1 odd-row-color">
+                  <!-- <td>
+                    <a th:href="@{|/art/recherche-article/${produit.article}|}" th:text="${produit.idart}">
+                    </a>
+                 </td>  -->
+                 <td th:text="${compte.nom}"></td>
+                 <td th:text="${compte.prenom}"></td>
+                 <td th:text="${compte.mail}"></td>
+                 <td th:text="${compte.adresse}"></td>
+                 <!-- <td >
+                    <!-- <a th:href="@{|/art/modifierProduit/${produit.idart}|}" th:text="Modifier">
+                       Modifier
+                    </a> -->
+                    <form th:action="@{|/compte/delCompte/${compte.idcompte}|}" th:object="${compte}" method="DELETE">
+                       <input type="submit" value="Valider" />
+                       <a th:href="@{|/compte/delCompte/${compte.idcompte}|}" th:text="Supprimer">
+                          Supprimer
+                       </a>
+                    </form>
+                 </td> -->
+              </tr>
+           </tbody>
+        </table>
+</div>
+</body>
+</html>

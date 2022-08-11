@@ -1,20 +1,20 @@
-package cdan4.tp.controller;
+
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import cdan4.tp.entity.Compte;
 import cdan4.tp.service.CompteService;
 
-@RestController
+@Controller
 @RequestMapping("/compte")
 
 public class CompteController {
@@ -54,6 +54,16 @@ public class CompteController {
         compte.setNom(nom);
         compte.setPrenom(prenom);
         compteService.insert(compte);
+    }
+
+    @GetMapping(path = "/afficheCompte")
+    public String  afficheCompte(Model model){
+        Compte compte = new Compte();
+        List<Compte> listcompte = compteService.getAll();
+        // model.addAttribute("comtpeBean", compte);
+        model.addAttribute("comptes", listcompte);
+        return "afficheCpt";
+
     }
 
 
